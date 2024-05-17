@@ -9,22 +9,28 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Menu {
-
-    public void exibirOpcoes() throws IOException, InterruptedException {
-        String menuInicial = ("""
+private String menuInicial = ("""
                 1) Lista de moedas e seus respectivos códigos
                 2) Inserir moeda a ser convertida
                 3) Sair
                 """);
-        System.out.println("*********************************");
+private String decorationLine = "*********************************";
+
+    public void exibirOpcoes() throws IOException, InterruptedException {
+        System.out.println(menuInicial);
+        System.out.println(decorationLine);
         System.out.println("Bem vindo ao conversor de moedas!");
         System.out.println(menuInicial);
         Scanner opcao = new Scanner(System.in);
-        Scanner input = new Scanner(System.in);
         System.out.print("Escolha uma opção: ");
         int opcaoEscolhida = opcao.nextInt();
-        System.out.println("*********************************");
+        System.out.println(decorationLine);
+        escolherOpcao(opcaoEscolhida);
+    }
 
+    public void escolherOpcao(int opcaoEscolhida) throws IOException, InterruptedException {
+        Scanner opcao = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         while (opcaoEscolhida == 1 || opcaoEscolhida == 2) {
             switch (opcaoEscolhida) {
                 case 1:
@@ -33,14 +39,14 @@ public class Menu {
                 case 2:
                     ConsultarAPI cotacao = new ConsultarAPI();
                     System.out.print("Insira a moeda de entrada: ");
-                    String moedaEntrada = input.nextLine();
+                    String moedaEntrada = input.nextLine().toUpperCase();
                     System.out.print("Insira a quantia de " + moedaEntrada + " que deseja converter: ");
                     String quantiaString = input.nextLine();
                     System.out.print("Insira a moeda de saída: ");
-                    String moedaSaida = input.nextLine();
+                    String moedaSaida = input.nextLine().toUpperCase();
                     BigDecimal multiplicador = new BigDecimal(quantiaString);
                     Calculadora calculadora = new Calculadora();
-                    String resultado = "A quantia de " + quantiaString + " " + moedaEntrada.toUpperCase() + " é referente a: -->  " + calculadora.converterMoeda(cotacao.taxaDeConversao(moedaEntrada, moedaSaida), multiplicador).toString() + " " + moedaSaida.toUpperCase() + "<--";
+                    String resultado = "A quantia de " + multiplicador + " " + moedaEntrada + " é referente a: -->  " + calculadora.converterMoeda(cotacao.taxaDeConversao(moedaEntrada, moedaSaida), multiplicador) + " " + moedaSaida + "  <--";
 
                     System.out.println(resultado);
                     System.out.println();
