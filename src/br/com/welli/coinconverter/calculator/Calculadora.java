@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 
 public class Calculadora {
     public BigDecimal converterMoeda(BigDecimal multiplicador, BigDecimal valorBase) {
-
         return multiplicador.multiply(valorBase);
-
     }
 }

@@ -47,7 +47,6 @@ private String decorationLine = "*********************************";
                     BigDecimal multiplicador = new BigDecimal(quantiaString);
                     Calculadora calculadora = new Calculadora();
                     String resultado = "A quantia de " + multiplicador + " " + moedaEntrada + " é referente a: -->  " + calculadora.converterMoeda(cotacao.taxaDeConversao(moedaEntrada, moedaSaida), multiplicador) + " " + moedaSaida + "  <--";
-
                     System.out.println(resultado);
                     System.out.println();
                     System.out.println(menuInicial);

@@ -17,7 +17,6 @@ public class ConsultarAPI {
 
     public BigDecimal taxaDeConversao(String moedaEntrada, String moedaSaida) throws IOException, InterruptedException {
         String url = BASE_URL + "/pair/" + moedaEntrada + "/" + moedaSaida;
-
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
@@ -37,7 +36,6 @@ public class ConsultarAPI {
                 .build();
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
-
         Gson gson = new Gson();
         var json = response.body();
         var jsonObject = gson.fromJson(json, JsonObject.class);
